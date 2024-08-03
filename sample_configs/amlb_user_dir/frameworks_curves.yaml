@@ -1,0 +1,17 @@
+---
+
+#########################
+### AutoML frameworks ###
+#########################
+
+######### Do Not Remove #########
+AutoGluon:
+  version: "latest"
+######### Do Not Remove #########
+
+AutoGluon_curves:
+  extends: AutoGluon
+  params:  # TabularPredictor.fit(params)
+    presets: best_quality
+    _generate_curves: True
+    _save_artifacts: ['learning_curves']
