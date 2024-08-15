@@ -1,10 +1,10 @@
 # Infra configurations
 cdk_context:  # AWS infra configs used to setup AWS Batch environment with AWS CDK
-  CDK_DEPLOY_ACCOUNT: 097403188315 # 644385875248  # required, update with your AWS account
-  CDK_DEPLOY_REGION: us-west-2  # required, update with your desired region
-  METRICS_BUCKET: andrew-bench-dev  # required, has to be a globally unique name
+  CDK_DEPLOY_ACCOUNT: # required, update with your AWS account
+  CDK_DEPLOY_REGION: # required, update with your desired region
+  METRICS_BUCKET: # required, has to be a globally unique name
   PREFIX: ag-bench  # Used to identify infra resources created, optional, default = ag-bench
-  INSTANCE: m5.2xlarge  # optional, default g4dn.2xlarge
+  INSTANCE: m5.16xlarge  # optional, default g4dn.2xlarge
   MAX_MACHINE_NUM: 1040   # optional, default 20
   # DATA_BUCKET: existing-s3-bucket  # optional, S3 bucket to download your private datasets
   # BLOCK_DEVICE_VOLUME: 100   # optional, default 100GB
@@ -15,7 +15,7 @@ cdk_context:  # AWS infra configs used to setup AWS Batch environment with AWS C
 # Benchmark configurations
 module: tabular  # required
 mode: aws  # required
-benchmark_name: ag_bench_learning_curves  # required
+benchmark_name: ag_bench_learning_curves_full  # required
 root_dir: ag_bench_runs  # optional, default = "ag_bench_runs"
 
 # required, can be any AMLB custom fork and branch, only one value allowed
@@ -26,15 +26,15 @@ git_uri#branch: https://github.com/adibiasio/automlbenchmark.git#learning_curves
 
 
 # required, only one value allowed
-# framework: AutoGluon:latest
 framework: AutoGluon_curves:curves
 
 # optional, only one value allowed, default: test
-amlb_constraint: toy
+amlb_constraint: 48h64c # toy
 
 # required, a list of amlb benchmarks to run, ref: https://github.com/openml/automlbenchmark/tree/master/resources/benchmarks
 amlb_benchmark: 
-  - tabular_one
+  - tabular_full
+  # - tabular_one
 
 # optional, local/s3 path where all the amlb customizations are stored, only one value allowed
 amlb_user_dir: sample_configs/amlb_user_dir

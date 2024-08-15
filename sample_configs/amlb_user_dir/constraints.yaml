@@ -1,7 +1,5 @@
 ---
 
-# TODO: Create constraint with time limit of 48 hours
-
 test100f:
   folds: 100
   max_runtime_seconds: 600
@@ -144,6 +142,12 @@ test:
 24h64c:
   folds: 10
   max_runtime_seconds: 57600
+  cores: 64
+  min_vol_size_mb: 100000
+
+48h64c:
+  folds: 10
+  max_runtime_seconds: 172800
   cores: 64
   min_vol_size_mb: 100000
 
